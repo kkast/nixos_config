@@ -10,7 +10,6 @@
 
           partitions = {
             ESP = {
-              priority = 1;
               size = "1G";
               type = "EF00";
 
@@ -24,22 +23,22 @@
               };
             };
 
-            swap = {
-              size = "32G";
-              type = "8200";
-
-              content = {
-                type = "swap";
-              };
-            };
-
             root = {
-              size = "100%";
+              end = "-32G";
 
               content = {
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
+              };
+            };
+
+            swap = {
+              size = "100%";
+              type = "8200";
+
+              content = {
+                type = "swap";
               };
             };
           };
