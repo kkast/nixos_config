@@ -13,6 +13,9 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -74,7 +77,7 @@
   users.users."user" = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -164,4 +167,8 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINpTTHQYwzmbz7GdqUx24wpj1vyZpEN2gWsSdLouB69s server"
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  virtualisation.libvirtd.enable = true;
+
+  programs.virt-manager.enable = true;
+
 }
