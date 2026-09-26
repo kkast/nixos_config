@@ -153,6 +153,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    ghostty.terminfo
   ];
   services.tailscale.enable = true;
   networking.firewall = {
